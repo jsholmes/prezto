@@ -1,18 +1,14 @@
 # check for whether we're in an HRT environment or not
 if [[ -w /home/john ]]; then
-    echo "HRT environment - 32os - /home/ writable"
+    echo "HRT environment -- /home writable"
     export AT_HRT='yes'
     export SCRATCH_DIR='/home/john'
-elif [[ -e /mnt/soporifix_vol3/user/home/john ]]; then
-    echo "HRT environment - trade network - no /home/john use /hrt/home/john"
-    export AT_HRT='yes'
-    export SCRATCH_DIR='/hrt/home/john'
-elif [[ -e /scratch/john/ ]]; then
-    echo "HRT environment - dev network - no home -- use /scratch/john"
+elif [[ -w /scratch/john ]]; then
+    echo "HRT environment -- dev network - homeless -- using /scratch/john"
     export AT_HRT='yes'
     export SCRATCH_DIR='/scratch/john'
 else
-    echo "Non HRT environment -- using ~ for scratch dir"
+    echo "NON-HRT environment -- using ~ for scratch dir"
     export SCRATCH_DIR='~'
 fi
 
