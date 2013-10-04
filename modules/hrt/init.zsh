@@ -19,7 +19,7 @@ fi
 if [[ -n $AT_HRT ]]; then
     # Store history on a scratch directory that any HRT box can reach, if we can
     # access the appropriate directory
-    HISTFILE=$SCRATCH_DIR/.zsh_history
+    #HISTFILE=$SCRATCH_DIR/.zsh_history
 
     #
     # HRT Aliases
@@ -36,12 +36,6 @@ if [[ -n $AT_HRT ]]; then
         fi
     fi
 
-    alias ll='ls -lrt'
-
-    alias grep='egrep'
-    alias g='egrep'
-
-    alias cawk='awk -F ,'
     alias field='/home/bmorcos/perl/field.pl'
     alias cld='/home/bmorcos/perl/field.pl ,'
     alias stats='perl /home/bmorcos/perl/statistics.pl'
