@@ -22,6 +22,11 @@ if [[ -n $AT_HRT ]]; then
     # HRT Aliases
     #
 
+    # mac helper aliases
+    if [[ $platform == 'macos' ]]; then
+        alias scmd='ssh johnlinux /abin/scmd'
+    fi
+
     if [[ -x /usr/local/bin/vim ]]; then
         alias vim='/usr/local/bin/vim'
     fi
