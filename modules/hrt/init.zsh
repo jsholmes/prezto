@@ -19,7 +19,8 @@ fi
 if [[ -n $AT_HRT ]]; then
     # Store history on a scratch directory that any HRT box can reach, if we can
     # access the appropriate directory
-    #HISTFILE=$SCRATCH_DIR/.zsh_history
+    HISTFILE=$SCRATCH_DIR/.zsh_history
+    echo "Using history file $HISTFILE"
 
     #
     # HRT Aliases
