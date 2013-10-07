@@ -27,10 +27,6 @@ if [[ -n $AT_HRT ]]; then
         alias scmd='ssh johnlinux /abin/scmd'
     fi
 
-    if [[ -x /usr/local/bin/vim ]]; then
-        alias vim='/usr/local/bin/vim'
-    fi
-
     if [[ -x $HOME/othersrc/archer/install/bin/gdb ]]; then
         if [[ `uname` == "FreeBSD" ]]; then
             # todo: update
