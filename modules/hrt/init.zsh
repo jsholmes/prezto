@@ -179,8 +179,10 @@ if [[ -n $AT_HRT ]]; then
         projbase="/scratch/$USER/projects/$project"
 
         pushd $projbase/$control
+        rm totals.txt
         grep TOTAL *.gntraday > totals.txt
         cd $projbase/$experiment
+        rm totals.txt
         grep TOTAL *.gntraday > totals.txt
         popd
 
