@@ -37,6 +37,8 @@ mymodules+=("completion")
 
 mymodules+=("fasd")
 
+mymodules+=("git")
+
 # my own ones
 mymodules+=("jsholmes" "hrt")
 
@@ -113,6 +115,9 @@ zstyle ':prezto:module:git:status:ignore' submodules 'all'
 # Setting it to 'random' loads a random theme.
 # Auto set to 'off' on dumb terminals.
 zstyle ':prezto:module:prompt' theme 'steeef'
+
+# add ... when completing
+zstyle ':prezto:module:editor:info:completing' format '%B%F{red}...%f%b'
 
 #
 # Screen
