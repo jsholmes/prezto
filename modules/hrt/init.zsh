@@ -72,6 +72,85 @@ if [[ -n $AT_HRT ]]; then
         echo $dates
     }
 
+    prepperfsims() {
+        if (( $# != 1 )) then
+            if (( $# != 3 )) then
+                echo "usage: prepsims <regex> [finalbool/test.1] [trunk]"
+                return 1
+            fi
+        fi
+
+        # the crazy syntax to split a command by lines into an array:
+        # foo=("${(@f)$(command)}")
+        lines=("${(@f)$(laqgrep $1)}")
+
+        # we'll keep a confs --> clientid map in here
+        typeset -A confs
+
+        for l in $lines; do
+            cid=`echo $l | sed "s/'//g" | awk -F, '{print $4 "." $5}'`
+            conf=`echo $l | laqconf`
+            confs[$conf]=$cid
+        done
+
+        local trunk="trunk"
+        if (( $# >= 3 )) then
+            trunk=$3
+        fi
+
+        local binary="/home/$USER/crypt/$trunk/fbsd8/bin/btrade/btrade"
+        echo "using binary " $binary
+
+        if [[ ! -x $binary ]] {
+            print "No such binary " $binary
+            return 4
+        }
+
+        frunname="perf.frun"
+        dates=(20130925)
+
+        # output directory:
+        local projbase="/usr/scratch/john/projects/"
+        local project="finalbool/test.1"
+        if (( $# >= 2 )) then
+            project=$2
+        fi
+
+        dir=${projbase}$project
+        if [[ ! -d $dir ]] {
+            print "No directory " $dir " exists -- creating"
+            mkdir -p $dir
+        }
+
+        local frunfile=$dir/$frunname
+        echo "Creating frun file at " $frunfile "..."
+
+        # actually make the frun file
+        echo "# test for " $dir " " $start " - " $end >! $frunfile
+
+        # todo: copy conf files
+
+        for date in $dates; do
+            echo "  for " $date
+            echo "# " $date >> $frunfile
+            for conf in ${(k)confs}; do
+                cid=$confs[$conf]
+                #echo $conf " --> " $confs[$conf]
+                printf '%s -f %s -s %s -c %s > %s/%s.%s.out\n' $binary $conf $date $cid $dir $cid $date $dir $cid $date >> $frunfile
+            done
+        done
+
+        # set up the gntraday frun file
+        local gntradayfrun=$dir/gntraday.$frunname
+        echo "gntraday frun at " $gntradayfrun
+        echo "#gntraday frun" >! $gntradayfrun
+        for date in $dates; do
+            echo 'cd ' $dir " &&  (cat *."$date".trades | /abin/gntraday > " $date".gntraday)" >> $gntradayfrun
+        done
+
+        echo "Done"
+    }
+
     # prepare an frun file to run sims
     prepsims() {
         if (( $# != 1 )) then
@@ -109,6 +188,7 @@ if [[ -n $AT_HRT ]]; then
 
         local start=20130701
         local end=20130925
+        local frunname="frun"
         dates=("${(@f)$(mktdaterange $start $end)}")
 
         # output directory:
@@ -124,11 +204,11 @@ if [[ -n $AT_HRT ]]; then
             mkdir -p $dir
         }
 
-        local frunfile=$dir/frun
+        local frunfile=$dir/$frunname
         echo "Creating frun file at " $frunfile "..."
 
         # actually make the frun file
-        echo "# test for " $dir " " $start " - " $end > $frunfile
+        echo "# test for " $dir " " $start " - " $end >! $frunfile
 
         # todo: copy conf files
 
@@ -143,8 +223,9 @@ if [[ -n $AT_HRT ]]; then
         done
 
         # set up the gntraday frun file
-        local gntradayfrun=$dir/gntraday.frun
-        echo "#gntraday frun" > $gntradayfrun
+        local gntradayfrun=$dir/gntraday.$frunname
+        echo "gntraday frun at " $gntradayfrun
+        echo "#gntraday frun" >! $gntradayfrun
         for date in $dates; do
             echo 'cd ' $dir " &&  (cat *."$date".trades | /abin/gntraday > " $date".gntraday)" >> $gntradayfrun
         done
