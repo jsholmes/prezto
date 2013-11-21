@@ -269,6 +269,18 @@ if [[ -n $AT_HRT ]]; then
         ksdiff $projbase/$control/totals.txt $projbase/$experiment/totals.txt
     }
 
+    autotest() {
+        variant="fbsd8.quick"
+        maxlevel="2"
+        if (( $# > 0 )) then
+            variant=$1
+        fi
+        if (( $# > 1 )) then
+            maxlevel=$2
+        fi
+        atl/src/test/autotest/autotest.py --no-build --variant $variant --max-test-level $maxlevel
+    }
+
 
     # add my bin dir to path
     export PATH=$PATH:/home/john/bin
