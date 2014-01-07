@@ -12,6 +12,18 @@ else
     export SCRATCH_DIR='~'
 fi
 
+# check for remote development scripts
+if [[ -e ~/Documents/HRTCryptVol ]]; then
+    alias hrtmount="~/remote.py --mount ~/Documents/HRTCryptVol --at /Volumes/hrtsrc"
+    alias hrtunmount="~/remote.py --unmount ~/Documents/HRTCryptVol --at /Volumes/hrtsrc"
+fi
+
+if [[ -e ~/hrtsrc/.remote  ]]; then
+    PATH=$PATH:~/hrtsrc/.remote/bin:~/hrtsrc/.remote/versioned/bin:/abin:~/bin
+fi
+
+alias setupvtune="source /opt/intel/vtune_amplifier_xe_2013/amplxe-vars.sh"
+
 if [[ -n $AT_HRT ]]; then
     # Store history on a scratch directory that any HRT box can reach, if we can
     # access the appropriate directory
