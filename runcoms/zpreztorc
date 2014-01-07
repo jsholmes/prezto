@@ -93,6 +93,9 @@ zstyle ':prezto:module:git:status:ignore' submodules 'all'
 # History Substring Search
 #
 
+# Enable highlighting for this module only
+zstyle ':prezto:module:history-substring-search' color 'yes'
+
 # Set the query found color.
 # zstyle ':prezto:module:history-substring-search:color' found ''
 
@@ -144,12 +147,12 @@ zstyle ':prezto:module:editor:info:completing' format '%B%F{red}...%f%b'
 
 # Set syntax highlighters.
 # By default, only the main highlighter is enabled.
-# zstyle ':prezto:module:syntax-highlighting' highlighters \
-#   'main' \
-#   'brackets' \
-#   'pattern' \
-#   'cursor' \
-#   'root'
+ zstyle ':prezto:module:syntax-highlighting' highlighters \
+   'main' \
+   'brackets' \
+   'pattern' \
+   'cursor' \
+   'root'
 #
 # Set syntax highlighting styles.
 # zstyle ':prezto:module:syntax-highlighting' styles \
