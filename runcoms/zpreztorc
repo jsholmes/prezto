@@ -39,6 +39,8 @@ mymodules+=("fasd")
 
 mymodules+=("git")
 
+mymodules+=("rsync")
+
 # my own ones
 mymodules+=("jsholmes" "hrt")
 

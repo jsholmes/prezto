@@ -37,3 +37,4 @@ fi
 alias grep='egrep'
 alias g='egrep'
 alias cawk='awk -F ,'
+alias t='task'
