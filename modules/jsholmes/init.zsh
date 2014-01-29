@@ -10,6 +10,14 @@ if [[ -e ~/vimwiki ]]; then
     alias vw='vim ~/vimwiki/index.wiki'
 fi
 
+# use zsh online help
+unalias run-help
+autoload -U run-help
+autoload run-help-git
+autoload run-help-svn
+autoload run-help-svk
+HELPDIR=/usr/local/share/zsh/helpfiles
+
 # find only visible files:
 alias findvis="find . \( ! -regex '.*/\..*' \)"
 
