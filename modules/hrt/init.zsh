@@ -180,7 +180,7 @@ if [[ -n $AT_HRT ]]; then
         typeset -A confs
 
         for l in $lines; do
-            cid=`echo $l | sed "s/'//g" | awk -F, '{print $4 "." $5}'`
+            cid=`echo $l | sed "s/'//g" | awk -F, '{print $4 "." $5}' | awk '{if (length($0) > 8) {print substr($0, 1, 2) "j" substr($0, 4,15);} else print $0}'`
             conf=`echo $l | laqconf`
             confs[$conf]=$cid
         done
@@ -190,11 +190,11 @@ if [[ -n $AT_HRT ]]; then
             trunk=$3
         fi
 
-        local binary="/home/$USER/crypt/$trunk/fbsd8/bin/btrade/btrade"
-        echo "using binary " $binary
+        local binarysrc="/home/$USER/crypt/$trunk/fbsd8/bin.debug/btrade/btrade"
+        echo "using binary " $binarysrc
 
-        if [[ ! -x $binary ]] {
-            print "No such binary " $binary
+        if [[ ! -x $binarysrc ]] {
+            print "No such binary " $binarysrc
             return 4
         }
 
@@ -216,6 +216,10 @@ if [[ -n $AT_HRT ]]; then
             mkdir -p $dir
         }
 
+        local binarydest="$dir/btrade"
+        echo "Copying " $binarysrc " to " $binarydest " ..."
+        cp $binarysrc $binarydest
+
         local frunfile=$dir/$frunname
         echo "Creating frun file at " $frunfile "..."
 
@@ -230,7 +234,7 @@ if [[ -n $AT_HRT ]]; then
             for conf in ${(k)confs}; do
                 cid=$confs[$conf]
                 #echo $conf " --> " $confs[$conf]
-                printf '%s -f %s -s %s -c %s -x %s/%s.%s.trades > %s/%s.%s.out\n' $binary $conf $date $cid $dir $cid $date $dir $cid $date >> $frunfile
+                printf '%s -f %s -s %s -c %s -x %s/%s.%s.trades > %s/%s.%s.out\n' $binarydest $conf $date $cid $dir $cid $date $dir $cid $date >> $frunfile
             done
         done
 
@@ -256,16 +260,17 @@ if [[ -n $AT_HRT ]]; then
             return 1
         fi
 
-        project="finalbool"
-        control="control"
-        experiment="test.1"
+        local control="control"
+        local experiment="test.1"
+
+        local project=$1
 
         if (( $# == 3 )) then
             control=$2
             experiment=$3
         fi
 
-        projbase="/scratch/$USER/projects/$project"
+        local projbase="/scratch/$USER/projects/$project"
 
         pushd $projbase/$control
         rm totals.txt
@@ -277,7 +282,7 @@ if [[ -n $AT_HRT ]]; then
 
         joined=`join -j 1 -o 0,1.3,1.4,2.4,1.7,2.7 $projbase/$control/totals.txt $projbase/$experiment/totals.txt`
         printf "%20s %20s %8s %8s %8s %8s %10s %10s %10s %10s\n" "file" "client" "a_shares" "b_shares" "a_profit" "b_profit" "delta_shares" "shares_%" "delta_profit" "profit_%"
-        echo $joined | awk '{printf "%s %10d %10.1f%%  %10.2f %10.2f\n", $0, $4-$3, ($4-$3)*100/$3, $6-$5, ($6-$5)*100/$5}'
+        echo $joined | awk '{if ($3 != 0) printf "%s %10d %10.1f%%  %10.2f %10.2f\n", $0, $4-$3, ($4-$3)*100/$3, $6-$5, ($6-$5)*100/$5}'
         ksdiff $projbase/$control/totals.txt $projbase/$experiment/totals.txt
     }
 
