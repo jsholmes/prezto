@@ -33,14 +33,15 @@ mymodules+=("history")
 mymodules+=("directory")
 mymodules+=("spectrum")
 mymodules+=("utility")
+
+# my own ones
+mymodules+=("jsholmes" "hrt")
+
 mymodules+=("completion")
 
 mymodules+=("fasd")
 
 mymodules+=("rsync")
-
-# my own ones
-mymodules+=("jsholmes" "hrt")
 
 # per-platform ones
 platform='unknown'

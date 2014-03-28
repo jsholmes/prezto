@@ -4,6 +4,7 @@ if [[ -w /hrt/home/john ]]; then
     echo "HRT live environment -- /hrt/home writable"
     export AT_HRT='yes'
     export SCRATCH_DIR='/hrt/home/john'
+    export ZDOTDIR='/hrt/home/john'
     export HRT_ENV='live'
 elif [[ -w /home/john ]]; then
     echo "HRT dev environment -- /home writable"
