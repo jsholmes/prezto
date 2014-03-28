@@ -37,8 +37,6 @@ mymodules+=("completion")
 
 mymodules+=("fasd")
 
-mymodules+=("git")
-
 mymodules+=("rsync")
 
 # my own ones
@@ -56,8 +54,11 @@ elif [[ "$unamestr" == 'Linux' ]]; then
 fi
 
 if [[ $platform == 'macos' ]]; then
-    mymodules+=("osx" "homebrew")
+    mymodules+=("git" "osx" "homebrew")
     echo 'using macos plugins'
+elif [[ $platform == 'linux' ]]; then
+    mymodules+=("command-not-found")
+    echo 'using linux plugins'
 fi
 
 # ones that have to go at the end
@@ -119,7 +120,11 @@ zstyle ':prezto:module:history-substring-search' color 'yes'
 # Set the prompt theme to load.
 # Setting it to 'random' loads a random theme.
 # Auto set to 'off' on dumb terminals.
-zstyle ':prezto:module:prompt' theme 'sorin'
+if [[ $platform == 'macos' ]]; then
+    zstyle ':prezto:module:prompt' theme 'steeef'
+else
+    zstyle ':prezto:module:prompt' theme 'nicoulaj'
+fi
 
 # add ... when completing
 zstyle ':prezto:module:editor:info:completing' format '%B%F{red}...%f%b'
