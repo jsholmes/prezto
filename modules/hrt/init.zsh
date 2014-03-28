@@ -298,6 +298,13 @@ if [[ -n $AT_HRT ]]; then
         atl/src/test/autotest/autotest.py --no-build --variant $variant --max-test-level $maxlevel
     }
 
+    orderdiff() {
+        oldscratch=$1
+        newscratch=$2
+        ordersfile=$3
+        ksdiff =(/abin/slfview -X -v $oldscratch/orders/$ordersfile) =(/abin/slfview -X -v $newscratch/orders/$ordersfile)
+    }
+
 
     # add my bin dir to path
     export PATH=$PATH:/home/john/bin
