@@ -1,15 +1,24 @@
 # check for whether we're in an HRT environment or not
-if [[ -w /home/john ]]; then
-    echo "HRT environment -- /home writable"
+
+if [[ -w /hrt/home/john ]]; then
+    echo "HRT live environment -- /hrt/home writable"
+    export AT_HRT='yes'
+    export SCRATCH_DIR='/hrt/home/john'
+    export HRT_ENV='live'
+elif [[ -w /home/john ]]; then
+    echo "HRT dev environment -- /home writable"
     export AT_HRT='yes'
     export SCRATCH_DIR='/home/john'
+    export HRT_ENV='dev-user'
 elif [[ -w /scratch/john ]]; then
-    echo "HRT environment -- dev network - homeless -- using /scratch/john"
+    echo "HRT sched environment -- dev network - homeless -- using /scratch/john"
     export AT_HRT='yes'
     export SCRATCH_DIR='/scratch/john'
+    export HRT_ENV='dev'
 else
-    echo "NON-HRT environment -- using ~ for scratch dir"
-    export SCRATCH_DIR='~'
+    echo "NON-HRT environment -- using $HOME for scratch dir"
+    export SCRATCH_DIR='$HOME'
+    export HRT_ENV='non'
 fi
 
 # check for remote development scripts
@@ -34,21 +43,9 @@ if [[ -n $AT_HRT ]]; then
     # HRT Aliases
     #
 
-    # mac helper aliases
-    if [[ $platform == 'macos' ]]; then
-        alias scmd='ssh johnlinux /abin/scmd'
-    fi
-
-    if [[ -x $HOME/othersrc/archer/install/bin/gdb ]]; then
-        if [[ `uname` == "FreeBSD" ]]; then
-            # todo: update
-            alias gdb74='/home/john/othersrc/archer/install/bin/gdb'
-        fi
-    fi
-
     alias field='/home/bmorcos/perl/field.pl'
     alias cld='/home/bmorcos/perl/field.pl ,'
-    alias stats='perl /home/bmorcos/perl/statistics.pl'
+    alias stats='/home/bmorcos/perl/statistics.pl'
     alias total='/home/bmorcos/opsbin/total'
 
     alias netlog='less +F /usr/scratch/netlog/inetlog.`date "+%Y%m%d"`'
