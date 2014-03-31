@@ -35,7 +35,14 @@ alias g='egrep'
 alias cawk='awk -F ,'
 alias t='task'
 
-# I want to have sbin stuff in my path
-path+=/usr/local/sbin
-path+=/usr/sbin
-path+=/sbin
+# set up go path
+if [[ $platform == 'macos' ]]; then
+    export GOPATH=$HOME/go
+elif [[ $platform == 'linux' ]]; then
+    export GOPATH=$HOME/go-linux
+elif [[ $platform == 'freebsd' ]]; then
+    export GOPATH=$HOME/go-bsd
+else
+    export GOPATH=$HOME/go
+fi
+path += $GOPATH/bin
