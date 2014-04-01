@@ -45,4 +45,4 @@ elif [[ $platform == 'freebsd' ]]; then
 else
     export GOPATH=$HOME/go
 fi
-path += $GOPATH/bin
+path+=$GOPATH/bin
