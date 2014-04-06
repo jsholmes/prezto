@@ -320,7 +320,7 @@ if [[ -n $AT_HRT ]]; then
         oldscratch=$1
         newscratch=$2
         ordersfile=$3
-        ksdiff =(/abin/slfview -X -v $oldscratch/orders/$ordersfile) =(/abin/slfview -X -v $newscratch/orders/$ordersfile)
+        ksdiff =(/abin/slfview -t "A " -X -v $oldscratch/orders/$ordersfile) =(/abin/slfview -t "A " -X -v $newscratch/orders/$ordersfile)
     }
 
 
