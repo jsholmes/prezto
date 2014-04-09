@@ -42,6 +42,7 @@ mymodules+=("completion")
 mymodules+=("fasd")
 
 mymodules+=("rsync")
+mymodules+=("ruby")
 
 # per-platform ones
 platform='unknown'
