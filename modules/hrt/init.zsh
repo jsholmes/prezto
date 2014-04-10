@@ -61,6 +61,26 @@ if [[ -n $AT_HRT ]]; then
     alias laqconf='perl -pe "s/^[^,]+://" | grep "^'\''y" | awk "{print \$8}" FS=, | awk "{print \$3}" | grep home'
     alias atl='sudo -E -u atl zsh'
 
+    trunkroot() {
+        if [ -d .git ]; then
+            echo '.git';
+        else
+            echo `git rev-parse --git-dir 2> /dev/null`
+        fi
+    }
+
+    bld() {
+        if [[ -e ~/hrtsrc/.remote ]]; then
+            if [  "$(pidof lsyncd)" ]; then
+                ~/hrtsrc/.remote/versioned/bin/build --nopush "$@"
+            else
+                ~/hrtsrc/.remote/versioned/bin/build "$@"
+            fi
+        else
+            `$trunkroot/build $@`
+        fi
+    }
+
     # grep laqur for something
     laqgrep() {
         if (( $# != 1 )) then
@@ -300,7 +320,7 @@ if [[ -n $AT_HRT ]]; then
         oldscratch=$1
         newscratch=$2
         ordersfile=$3
-        ksdiff =(/abin/slfview -X -v $oldscratch/orders/$ordersfile) =(/abin/slfview -X -v $newscratch/orders/$ordersfile)
+        ksdiff =(/abin/slfview -t "A " -X -v $oldscratch/orders/$ordersfile) =(/abin/slfview -t "A " -X -v $newscratch/orders/$ordersfile)
     }
 
 

@@ -46,3 +46,5 @@ else
     export GOPATH=$HOME/go
 fi
 path+=$GOPATH/bin
+
+alias johnmac='mosh johnmac -- tmux a'
