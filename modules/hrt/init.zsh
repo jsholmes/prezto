@@ -87,7 +87,7 @@ if [[ -n $AT_HRT ]]; then
             echo "usage: laqgrep regex"
             return 1
         fi
-        egrep "$1" /atl/live/conf/laqur/*.conf
+        egrep -v "^#" /atl/live/conf/laqur/laqurlive/*.conf | egrep "$1"
     }
 
     mktdaterange() {
