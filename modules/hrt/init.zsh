@@ -61,6 +61,10 @@ if [[ -n $AT_HRT ]]; then
     alias laqconf='perl -pe "s/^[^,]+://" | grep "^'\''y" | awk "{print \$8}" FS=, | awk "{print \$3}" | grep home'
     alias atl='sudo -E -u atl zsh'
 
+    alias nscmd='/abin/scmd -s shscmd30'
+    alias m='echo -e "Total:\n`scmd list plist | grep $USER`\nRunning:\n`scmd list rlist | grep $USER`"'
+    alias n='echo -e "Total:\n`nscmd list plist | grep $USER`\nRunning:\n`nscmd list rlist | grep $USER`"'
+
     trunkroot() {
         if [ -d .git ]; then
             echo '.git';
@@ -72,7 +76,8 @@ if [[ -n $AT_HRT ]]; then
     bld() {
         if [[ -e ~/hrtsrc/.remote ]]; then
             if [  "$(pidof lsyncd)" ]; then
-                ~/hrtsrc/.remote/versioned/bin/build --nopush "$@"
+                rcmd ./build "$@"
+                #~/hrtsrc/.remote/versioned/bin/build --nopush "$@"
             else
                 ~/hrtsrc/.remote/versioned/bin/build "$@"
             fi
