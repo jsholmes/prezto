@@ -62,8 +62,8 @@ if [[ -n $AT_HRT ]]; then
     alias atl='sudo -E -u atl zsh'
 
     alias nscmd='/abin/scmd -s shscmd30'
-    alias m='echo -e "Total:\n`scmd list plist | grep $USER`\nRunning:\n`scmd list rlist | grep $USER`"'
-    alias n='echo -e "Total:\n`nscmd list plist | grep $USER`\nRunning:\n`nscmd list rlist | grep $USER`"'
+    alias m='echo -e "Total:\n`/abin/scmd list plist | grep $USER`\nRunning:\n`scmd list rlist | grep $USER`"'
+    alias n='echo -e "Total:\n`nscmd (slow sched) list plist | grep $USER`\nRunning:\n`nscmd list rlist | grep $USER`"'
 
     trunkroot() {
         if [ -d .git ]; then
