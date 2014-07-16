@@ -55,20 +55,25 @@ mymodules+=("completion")
 
 mymodules+=("fasd")
 
-mymodules+=("rsync")
-mymodules+=("ruby")
+#mymodules+=("rsync")
+#mymodules+=("ruby")
 
+mymodules+=("git")
 
 if [[ $platform == 'macos' ]]; then
-    mymodules+=("git" "osx" "homebrew")
+    mymodules+=("osx")
     echo 'using macos plugins'
 elif [[ $platform == 'linux' ]]; then
     mymodules+=("command-not-found")
     echo 'using linux plugins'
 fi
 
+#
 # ones that have to go at the end
-mymodules+=("syntax-highlighting" "history-substring-search" "prompt")
+# The ordering between these 3 has to be this!
+#
+mymodules+=("syntax-highlighting")
+mymodules+=("history-substring-search" "prompt")
 
 zstyle ':prezto:load' pmodule $mymodules
 
@@ -167,7 +172,6 @@ zstyle ':prezto:module:editor:info:completing' format '%B%F{red}...%f%b'
 # By default, only the main highlighter is enabled.
  zstyle ':prezto:module:syntax-highlighting' highlighters \
    'main' \
-   'brackets' \
    'pattern' \
    'cursor' \
    'root'
