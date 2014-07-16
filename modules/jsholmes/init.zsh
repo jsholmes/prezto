@@ -48,3 +48,6 @@ fi
 path+=$GOPATH/bin
 
 alias johnmac='mosh johnmac -- tmux a'
+
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
