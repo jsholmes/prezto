@@ -132,13 +132,13 @@ zstyle ':prezto:module:history-substring-search' color 'yes'
 # Setting it to 'random' loads a random theme.
 # Auto set to 'off' on dumb terminals.
 if [[ $platform == 'macos' ]]; then
-    zstyle ':prezto:module:prompt' theme 'sorin'
+    zstyle ':prezto:module:prompt' theme 'superlinh'
 else
-    zstyle ':prezto:module:prompt' theme 'nicoulaj'
+    zstyle ':prezto:module:prompt' theme 'superlinh'
 fi
 
 # add ... when completing
-zstyle ':prezto:module:editor:info:completing' format '%B%F{red}...%f%b'
+#zstyle ':prezto:module:editor:info:completing' format '%B%F{red}...%f%b'
 
 #
 # Ruby
