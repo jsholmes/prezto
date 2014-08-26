@@ -173,7 +173,6 @@ fi
  zstyle ':prezto:module:syntax-highlighting' highlighters \
    'main' \
    'pattern' \
-   'cursor' \
    'root'
 #
 # Set syntax highlighting styles.
