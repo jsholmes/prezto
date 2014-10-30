@@ -34,6 +34,10 @@ fi
 
 alias setupvtune="source /opt/intel/vtune_amplifier_xe_2013/amplxe-vars.sh"
 
+# to get lsyncd going
+alias startsync='sudo /Volumes/hrtsrc/.remote/versioned/bin/lsyncd ~/lsyncsrc.lua'
+
+
 if [[ -n $AT_HRT ]]; then
     # Store history on a scratch directory that any HRT box can reach, if we can
     # access the appropriate directory
