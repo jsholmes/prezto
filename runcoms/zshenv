@@ -5,11 +5,24 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+## Profiling ##
 # uncomment to profile startup
-# set -x
+## set -x
+# set the trace prompt to include seconds, nanoseconds, script name and line number
+#PS4='+%D %* %N:%i> '
+# # save file stderr to file descriptor 3 and redirect stderr (including trace 
+# # output) to a file with the script's PID as an extension
+#exec 3>&2 2>/tmp/startlog.$$
+# # set options to turn on tracing and expansion of commands contained in the prompt
+#setopt xtrace prompt_subst
 
 # Ensure that a non-login, non-interactive shell has a defined environment.
 if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
 
+
+## turn off tracing
+#unsetopt xtrace
+## # restore stderr to the value saved in FD 3
+#exec 2>&3 3>&-
