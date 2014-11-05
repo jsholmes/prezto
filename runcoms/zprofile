@@ -64,8 +64,9 @@ export LESS='-F -i -M -R -S -w -X -z-4 -n'
 export LESSBINFMT='*u[%02x]'
 
 # Set the Less input preprocessor.
-if (( $+commands[lesspipe.sh] )); then
-  export LESSOPEN='| /usr/bin/env lesspipe.sh %s 2>&-'
+# Try both `lesspipe` and `lesspipe.sh` as either might exist on a system.
+if (( $#commands[(i)lesspipe(|.sh)] )); then
+  export LESSOPEN="| /usr/bin/env $commands[(i)lesspipe(|.sh)] %s 2>&-"
 fi
 
 #
@@ -84,4 +85,3 @@ fi
 
 export HUGETLB_MORECORE='yes'
 export HUGETLB_NO_PREFAULT=''
-
