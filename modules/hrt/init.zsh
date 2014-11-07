@@ -32,7 +32,7 @@ if [[ -e ~/hrtsrc/.remote  ]]; then
     PATH=$PATH:~/hrtsrc/.remote/bin:~/hrtsrc/.remote/versioned/bin:/abin:~/bin
 fi
 
-alias setupvtune="source /opt/intel/vtune_amplifier_xe_2013/amplxe-vars.sh"
+alias setupvtune="source /opt/intel/vtune_amplifier_xe/amplxe-vars.sh"
 
 # to get lsyncd going
 alias startsync='sudo /Volumes/hrtsrc/.remote/versioned/bin/lsyncd ~/lsyncsrc.lua'
