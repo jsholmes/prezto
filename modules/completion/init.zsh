@@ -15,7 +15,7 @@ fi
 fpath=("${0:h}/external/src" $fpath)
 
 # Load and initialize the completion system ignoring insecure directories.
-autoload -Uz compinit && compinit -i
+autoload -Uz compinit && compinit -u -d /usr/tmp/john.zsh.compdump
 
 #
 # Options
@@ -36,10 +36,11 @@ unsetopt FLOW_CONTROL      # Disable start/stop characters in shell editor.
 
 # Use caching to make completion for cammands such as dpkg and apt usable.
 zstyle ':completion::complete:*' use-cache on
-zstyle ':completion::complete:*' cache-path "${ZDOTDIR:-$HOME}/.zcompcache"
+zstyle ':completion::complete:*' cache-path "/usr/tmp/john.zsh.zcompcache"
 
 # Use accept-exact so it doesn't try to complete things that are already valid
 zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' accept-exact-dirs true
 
 # Case-insensitive (all), partial-word, and then substring completion.
 if zstyle -t ':prezto:module:completion:*' case-sensitive; then
@@ -119,7 +120,7 @@ zstyle ':completion:*:(rm|kill|diff):*' ignore-line other
 zstyle ':completion:*:rm:*' file-patterns '*:all-files'
 
 # Kill
-zstyle ':completion:*:*:*:*:processes' command 'ps -u $USER -o pid,user,comm -w'
+zstyle ':completion:*:*:*:*:processes' command 'ps -u $USER -o pid,user,command -w'
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;36=0=01'
 zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:*:kill:*' force-list always
@@ -149,4 +150,3 @@ zstyle ':completion:*:ssh:*' group-order users hosts-domain hosts-host users hos
 zstyle ':completion:*:(ssh|scp|rsync):*:hosts-host' ignored-patterns '*(.|:)*' loopback ip6-loopback localhost ip6-localhost broadcasthost
 zstyle ':completion:*:(ssh|scp|rsync):*:hosts-domain' ignored-patterns '<->.<->.<->.<->' '^[-[:alnum:]]##(.[-[:alnum:]]##)##' '*@*'
 zstyle ':completion:*:(ssh|scp|rsync):*:hosts-ipaddr' ignored-patterns '^(<->.<->.<->.<->|(|::)([[:xdigit:].]##:(#c,2))##(|%*))' '127.0.0.<->' '255.255.255.255' '::1' 'fe80::*'
-
