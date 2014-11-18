@@ -136,7 +136,7 @@ if [[ $platform == 'macos' ]]; then
 elif [[ $platform == 'freebsd' ]]; then
     zstyle ':prezto:module:prompt' theme 'clint'
 else
-    zstyle ':prezto:module:prompt' theme 'superlinh'
+    zstyle ':prezto:module:prompt' theme 'clint'
 fi
 
 # add ... when completing
