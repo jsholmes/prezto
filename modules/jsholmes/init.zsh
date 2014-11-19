@@ -51,3 +51,6 @@ alias johnmac='mosh johnmac -- tmux a'
 
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+
+# use Ctrl-r for incremental backsearch for the bash folks
+bindkey '^r' history-incremental-search-backward
