@@ -54,3 +54,19 @@ export LC_ALL=en_US.UTF-8
 
 # use Ctrl-r for incremental backsearch for the bash folks
 bindkey '^r' history-incremental-search-backward
+
+# pygmentizing version of less -- pless
+pless() {
+    # note less arguments:
+    # -F -- quit if less than 1 screen
+    # -i ignore case in searche
+    # -X disables sending termcap init/deinit to avoid clearing screen, etc.
+    # -R ANSI colors output in raw form
+    # -M verbose less prompt
+    # -x4 sets tab stops to 4
+    if (($# == 0)) then
+        pygmentize -f terminal256 -g -P style=monokai /dev/stdin | less -FiXRM -x4
+    else
+        pygmentize -f terminal256 -g -P style=monokai $* | less -FiXRM -x4
+    fi
+}
