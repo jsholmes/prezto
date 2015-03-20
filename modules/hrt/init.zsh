@@ -22,6 +22,9 @@ else
     export HRT_ENV='non'
 fi
 
+export HUGETLB_MORECORE='yes'
+export HUGETLB_NO_PREFAULT=''
+
 # check for remote development scripts
 if [[ -e ~/Documents/HRTCryptVol ]]; then
     alias hrtmount="~/remote.py --mount ~/Documents/HRTCryptVol --at /Volumes/hrtsrc"
@@ -329,7 +332,7 @@ if [[ -n $AT_HRT ]]; then
         oldscratch=$1
         newscratch=$2
         ordersfile=$3
-        ksdiff =(/abin/slfview -t "A " -X -v $oldscratch/orders/$ordersfile) =(/abin/slfview -t "A " -X -v $newscratch/orders/$ordersfile)
+        ksdiff =(/abin/slfview -m -t "a " -X -v $oldscratch/orders/$ordersfile) =(/abin/slfview -m -t "a " -X -v $newscratch/orders/$ordersfile)
     }
 
 
