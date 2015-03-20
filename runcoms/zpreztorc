@@ -51,6 +51,8 @@ mymodules+=("utility")
 # my own ones
 mymodules+=("jsholmes" "hrt")
 
+
+# more completions
 mymodules+=("completion")
 
 mymodules+=("fasd")
@@ -59,6 +61,10 @@ mymodules+=("fasd")
 #mymodules+=("ruby")
 
 mymodules+=("git")
+mymodules+=("archive")
+
+# tmux
+#mymodules+=("tmux")
 
 if [[ $platform == 'macos' ]]; then
     mymodules+=("osx")
@@ -77,6 +83,7 @@ mymodules+=("history-substring-search" "prompt")
 
 zstyle ':prezto:load' pmodule $mymodules
 
+
 #
 # Editor
 #
@@ -85,7 +92,7 @@ zstyle ':prezto:load' pmodule $mymodules
 zstyle ':prezto:module:editor' key-bindings 'vi'
 
 # Auto convert .... to ../..
-zstyle ':prezto:module:editor' dot-expansion 'yes'
+zstyle ':prezto:module:editor' dot-expansion 'no'
 
 #
 # Git
@@ -210,4 +217,4 @@ zstyle ':prezto:module:terminal:tab-title' format '%m: %s'
 # zstyle ':prezto:module:tmux:auto-start' remote 'yes'
 
 # Integrate with iTerm2.
-# zstyle ':prezto:module:tmux:iterm' integrate 'yes'
+ zstyle ':prezto:module:tmux:iterm' integrate 'yes'
