@@ -317,7 +317,7 @@ if [[ -n $AT_HRT ]]; then
     }
 
     autotest() {
-        variant="fbsd8.quick"
+        variant="linux.quick"
         maxlevel="2"
         if (( $# > 0 )) then
             variant=$1
@@ -326,6 +326,17 @@ if [[ -n $AT_HRT ]]; then
             maxlevel=$2
         fi
         atl/src/test/autotest/autotest.py --no-build --variant $variant --max-test-level $maxlevel
+    }
+
+    slfdiff() {
+        old=$1
+        new=$2
+        if (( $# > 2  )) then
+            extraargs=$3
+        else
+            extraargs=""
+        fi
+        ksdiff =(/abin/slfview $extraargs -m -t "a " -X -v $old) =(/abin/slfview $extraargs -m -t "a " -X -v $new)
     }
 
     orderdiff() {
