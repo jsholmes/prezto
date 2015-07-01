@@ -89,3 +89,12 @@ function get_short_path() {
             echo $LONG_PATH
     fi
 }
+
+
+# HH config
+# todo: maybe put this into its own plugin?
+# add this configuration to ~/.zshrc
+export HH_CONFIG=hicolor        # get more colors
+bindkey -s "\C-r" "\eqhh\n"     # bind hh to Ctrl-r (for Vi mode check doc)
+
+
