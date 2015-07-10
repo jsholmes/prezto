@@ -142,10 +142,10 @@ if [[ $platform == 'macos' ]]; then
     #zstyle ':prezto:module:prompt' theme 'agnoster'
     zstyle ':prezto:module:prompt' theme 'pure'
 elif [[ $platform == 'freebsd' ]]; then
-    export PURE_GIT_UNTRACKED_DIRTY=0
+    #export PURE_GIT_UNTRACKED_DIRTY=0
     zstyle ':prezto:module:prompt' theme 'pure'
 else
-    export PURE_GIT_UNTRACKED_DIRTY=0
+    #export PURE_GIT_UNTRACKED_DIRTY=0
     zstyle ':prezto:module:prompt' theme 'pure'
 fi
 
