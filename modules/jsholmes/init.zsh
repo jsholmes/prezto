@@ -22,7 +22,31 @@ fi
 alias findvis="find . \( ! -regex '.*/\..*' \)"
 
 # vim is my editor of choice
+#bindkey -v
 export EDITOR=vim
+
+#bindkey -v
+
+#bindkey '^P' up-history
+#bindkey '^N' down-history
+#bindkey '^?' backward-delete-char
+#bindkey '^h' backward-delete-char
+#bindkey '^w' backward-kill-word
+
+#function zle-line-init zle-keymap-select {
+    #VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
+    #RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
+    #zle reset-prompt
+#}
+
+#zle -N zle-line-init
+#zle -N zle-keymap-select
+export KEYTIMEOUT=1
+
+# edit the command line in vim when i hit v
+#autoload -U edit-command-line
+#zle -N edit-command-line
+#bindkey -M vicmd v edit-command-line
 
 # use 256 colors in tmux
 if [[ -x `which tmux` ]]; then
@@ -30,6 +54,7 @@ if [[ -x `which tmux` ]]; then
     [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 fi
 
+alias ll='ls -al'
 alias grep='egrep'
 alias g='egrep'
 alias cawk='awk -F ,'
