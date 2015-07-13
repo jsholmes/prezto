@@ -15,7 +15,7 @@ fi
 fpath=("${0:h}/external/src" $fpath)
 
 # Load and initialize the completion system ignoring insecure directories.
-autoload -Uz compinit && compinit -u -d /usr/tmp/john.zsh.compdump
+autoload -Uz compinit && compinit -u -d /usr/scratch/john.zsh.compdump
 
 #
 # Options
@@ -36,7 +36,7 @@ unsetopt FLOW_CONTROL      # Disable start/stop characters in shell editor.
 
 # Use caching to make completion for commands such as dpkg and apt usable.
 zstyle ':completion::complete:*' use-cache on
-zstyle ':completion::complete:*' cache-path "/usr/tmp/john.zsh.zcompcache"
+zstyle ':completion::complete:*' cache-path "/usr/scratch/john.zsh.zcompcache"
 
 # Use accept-exact so it doesn't try to complete things that are already valid
 zstyle ':completion:*' accept-exact '*(N)'
