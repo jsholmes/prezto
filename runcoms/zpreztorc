@@ -51,8 +51,10 @@ mymodules+=("utility")
 # my own ones
 mymodules+=("jsholmes" "hrt")
 
-
 # more completions
+if [[ $platform == 'macos' ]]; then
+    mymodules+=("completion")
+fi
 mymodules+=("completion")
 
 mymodules+=("fasd")
