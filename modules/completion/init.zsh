@@ -16,7 +16,9 @@ fpath=("${0:h}/external/src" $fpath)
 
 # Load and initialize the completion system ignoring insecure directories.
 zmodload -i zsh/complist
-(autoload -Uz compinit && compinit -u -d /usr/scratch/john.zsh.compdump &) > /dev/null
+{
+    autoload -Uz compinit && compinit -u -d /usr/scratch/john.zsh.compdump &!
+}
 
 #
 # Options
