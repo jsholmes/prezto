@@ -54,7 +54,7 @@ if [[ -x `which tmux` ]]; then
     [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 fi
 
-alias ll='ls -al'
+alias ll='ls -alhG'
 alias grep='egrep'
 alias g='egrep'
 alias cawk='awk -F ,'
