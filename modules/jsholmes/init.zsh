@@ -153,3 +153,22 @@ if [[ $platform == 'linux'  ]]; then
     export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
     export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
 fi
+
+# function to move up n directories =========================================
+up() {
+  local op=print
+  [[ -t 1 ]] && op=cd
+  case "$1" in
+    '') up 1;;
+    -*|+*) $op ~$1;;
+    <->) $op $(printf '../%.0s' {1..$1});;
+    *) local -a seg; seg=(${(s:/:)PWD%/*})
+       local n=${(j:/:)seg[1,(I)$1*]}
+       if [[ -n $n ]]; then
+         $op /$n
+       else
+         print -u2 up: could not find prefix $1 in $PWD
+         return 1
+       fi
+  esac
+}
