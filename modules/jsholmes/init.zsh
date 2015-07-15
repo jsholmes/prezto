@@ -123,4 +123,14 @@ function get_short_path() {
 export HH_CONFIG=hicolor        # get more colors
 bindkey -s "\C-r" "\eqhh\n"     # bind hh to Ctrl-r (for Vi mode check doc)
 
-
+function antup() {
+    antigen-hs-compile
+    pushd "~/antigen-hs/repos"
+    for d (*) {
+        pushd $d
+        git pull
+        git submodule update --init --recursive
+        popd
+    }
+    popd
+}
