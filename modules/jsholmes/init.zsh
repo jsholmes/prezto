@@ -136,6 +136,17 @@ function antup() {
     popd
 }
 
+function dotup() {
+    pushd "$HOME/.dotfiles"
+    git pull
+    git submodule update --init --recursive
+    git submodule foreach --recursive git pull origin master
+    git submodule foreach --recursive 'git fetch upstream || :'
+    git submodule foreach --recursive 'git merge upstream/master || :'
+    git submodule foreach --recursive 'git status || :'
+    git status
+}
+
 # linuxbrew ==================================================================
 if [[ $platform == 'linux'  ]]; then
     export PATH="$HOME/.linuxbrew/bin:$PATH"
