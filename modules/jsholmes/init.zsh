@@ -126,7 +126,7 @@ bindkey -s "\C-r" "\eqhh\n"     # bind hh to Ctrl-r (for Vi mode check doc)
 # antigen-hs ==================================================================
 function antup() {
     antigen-hs-compile
-    pushd "~/antigen-hs/repos"
+    pushd "$HOME/.antigen-hs/repos"
     for d (*) {
         pushd $d
         git pull
