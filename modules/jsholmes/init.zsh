@@ -123,6 +123,7 @@ function get_short_path() {
 export HH_CONFIG=hicolor        # get more colors
 bindkey -s "\C-r" "\eqhh\n"     # bind hh to Ctrl-r (for Vi mode check doc)
 
+# antigen-hs ==================================================================
 function antup() {
     antigen-hs-compile
     pushd "~/antigen-hs/repos"
@@ -134,3 +135,10 @@ function antup() {
     }
     popd
 }
+
+# linuxbrew ==================================================================
+if [[ $platform == 'linux'  ]]; then
+    export PATH="$HOME/.linuxbrew/bin:$PATH"
+    export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
+    export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
+fi
