@@ -73,6 +73,9 @@ else
 fi
 path+=$GOPATH/bin
 
+# Set up haskell path for cabal binaries
+path+=$HOME/.cabal/bin
+
 alias johnmac='mosh johnmac -- tmux a'
 
 export LC_CTYPE=en_US.UTF-8
