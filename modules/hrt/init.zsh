@@ -352,8 +352,12 @@ if [[ -n $AT_HRT ]]; then
     # add my bin dir to path
     export PATH=$PATH:/home/john/bin
 
+    # add algoenv to path
+    export PATH=$PATH:/usr/local/venvs/algoenvlast
+
     # set malloc options to make testing work better
     export MALLOC_OPTIONS=J
+    export MALLOC_CONF="junk:true"
 
     # default hrt environment stuff
     . /atl/make/atl.zshrc
