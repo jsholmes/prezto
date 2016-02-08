@@ -84,12 +84,7 @@ if [[ -n $AT_HRT ]]; then
 
     bld() {
         if [[ -e ~/hrtsrc/.remote ]]; then
-            if [  "$(pidof lsyncd)" ]; then
-                rcmd ./build "$@"
-                #~/hrtsrc/.remote/versioned/bin/build --nopush "$@"
-            else
-                ~/hrtsrc/.remote/versioned/bin/build "$@"
-            fi
+            rcmd ./build "$@"
         else
             `$trunkroot/build $@`
         fi
