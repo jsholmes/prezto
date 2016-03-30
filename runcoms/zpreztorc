@@ -87,6 +87,13 @@ zstyle ':prezto:load' pmodule $mymodules
 
 
 #
+# Autosuggestions
+#
+
+# Set the query found color.
+# zstyle ':prezto:module:autosuggestions:color' found ''
+
+#
 # Editor
 #
 
@@ -186,7 +193,10 @@ zstyle ':prezto:module:editor:info:completing' format '%B%F{red}...%f%b'
 # By default, only the main highlighter is enabled.
  zstyle ':prezto:module:syntax-highlighting' highlighters \
    'main' \
+   'brackets' \
    'pattern' \
+   'line' \
+   'cursor' \
    'root'
 #
 # Set syntax highlighting styles.
