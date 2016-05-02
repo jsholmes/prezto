@@ -82,14 +82,6 @@ if [[ -n $AT_HRT ]]; then
         fi
     }
 
-    bld() {
-        if [[ -e ~/hrt/.remote ]]; then
-            rcmd ./build "$@"
-        else
-            `$trunkroot/build $@`
-        fi
-    }
-
     # grep laqur for something
     laqgrep() {
         if (( $# != 1 )) then
