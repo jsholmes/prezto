@@ -27,18 +27,18 @@ export HUGETLB_NO_PREFAULT=''
 
 # check for remote development scripts
 if [[ -e ~/Documents/HRTCryptVol ]]; then
-    alias hrtmount="~/remote.py --mount ~/Documents/HRTCryptVol --at /Volumes/hrtsrc"
-    alias hrtunmount="~/remote.py --unmount ~/Documents/HRTCryptVol --at /Volumes/hrtsrc"
+    alias hrtmount="~/remote.py --mount ~/Documents/HRTCryptVol --at /Volumes/hrt"
+    alias hrtunmount="~/remote.py --unmount ~/Documents/HRTCryptVol --at /Volumes/hrt"
 fi
 
-if [[ -e ~/hrtsrc/.remote  ]]; then
-    PATH=$PATH:~/hrtsrc/.remote/bin:~/hrtsrc/.remote/versioned/bin:/abin:~/bin
+if [[ -e ~/hrt/.remote  ]]; then
+    PATH=$PATH:~/hrt/.remote/bin:~/hrt/.remote/versioned/bin:/abin:~/bin
 fi
 
 alias setupvtune="source /opt/intel/vtune_amplifier_xe/amplxe-vars.sh"
 
 # to get lsyncd going
-alias startsync='sudo /Volumes/hrtsrc/.remote/versioned/bin/lsyncd ~/lsyncsrc.lua'
+alias startsync='sudo /Volumes/hrt/.remote/versioned/bin/lsyncd ~/lsyncsrc.lua'
 
 ## add /abin/lib to PYTHONPATH
 #export PYTHONPATH=/abin/lib:$PYTHONPATH
@@ -83,7 +83,7 @@ if [[ -n $AT_HRT ]]; then
     }
 
     bld() {
-        if [[ -e ~/hrtsrc/.remote ]]; then
+        if [[ -e ~/hrt/.remote ]]; then
             rcmd ./build "$@"
         else
             `$trunkroot/build $@`
