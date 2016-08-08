@@ -10,6 +10,24 @@ if [[ -e ~/vimwiki ]]; then
     alias vw='vim ~/vimwiki/index.wiki'
 fi
 
+# enter commands from the command line
+setopt INTERACTIVE_COMMENTS
+
+# display error code on non-zero exit
+setopt PRINT_EXIT_VALUE
+
+# complain if try to exit shell with background jobs
+setopt CHECK_JOBS
+
+# don't hup on exit shell
+unsetopt HUP
+
+# report immediately on background jobs exiting
+setopt NOTIFY
+
+# don't complain if globs don't match anything
+unsetopt NOMATCH
+
 #use zsh online help
 #unalias run-help
 #autoload -U run-help
