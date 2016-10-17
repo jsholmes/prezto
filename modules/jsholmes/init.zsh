@@ -67,11 +67,16 @@ export KEYTIMEOUT=1
 #zle -N edit-command-line
 #bindkey -M vicmd v edit-command-line
 
+# use 256 colors everywhere normally
+export TERM=xterm-256color
+
 # use 256 colors in tmux
 if [[ -x `which tmux` ]]; then
-    alias tmux='TERM=screen-256color tmux'
+    alias tmux='tmux -2'
     [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 fi
+
+[ -n "$TMUX" ] && export TERM=screen-256color
 
 alias ll='ls -alhG'
 alias grep='egrep'
