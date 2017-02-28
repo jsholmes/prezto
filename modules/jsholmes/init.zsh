@@ -151,7 +151,8 @@ bindkey -s "\C-r" "\eqhh\n"     # bind hh to Ctrl-r (for Vi mode check doc)
 
 # antigen-hs ==================================================================
 function antup() {
-    antigen-hs-compile
+    echo 'source ~/.zsh/antigen-hs/init.zsh' | tee -a ~/.zshrc | env zsh
+    antigen-hs-setup
     pushd "$HOME/.antigen-hs/repos"
     for d (*) {
         pushd $d
