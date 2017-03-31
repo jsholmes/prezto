@@ -87,6 +87,13 @@ zstyle ':prezto:load' pmodule $mymodules
 
 
 #
+# Deer
+#
+
+# Set key bindings
+# zstyle ':prezto:module:deer' key-bindings '^k'
+
+#
 # Autosuggestions
 #
 
@@ -205,6 +212,10 @@ zstyle ':prezto:module:syntax-highlighting' styles \
   'command' 'fg=green' \
   'function' 'bg=blue' \
   'alias' 'fg=magenta,bold'
+#
+# Set syntax pattern styles.
+# zstyle ':prezto:module:syntax-highlighting' pattern \
+#   'rm*-rf*' 'fg=white,bold,bg=red'
 
 #
 # Terminal
